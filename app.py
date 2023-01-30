@@ -26,3 +26,7 @@ def login():
 
 login()
 
+cursor.execute("SELECT title, content FROM post")
+result = cursor.fetchall()
+print(result)
+
