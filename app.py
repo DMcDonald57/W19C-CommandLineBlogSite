@@ -11,11 +11,18 @@ conn = mariadb.connect(
 cursor = conn.cursor()
 
 print("Welcome Back.\n")
-user_name = input("Please enter your User Name\n")
-pass_word = input("Please enter your Password\n")
+username = input("Please enter your User Name\n")
+password = input("Please enter your Password\n")
 
 def login():
-    cursor.execute("SELECT id FROM client WHERE username = %s AND password = %s")
+    check = "SELECT id from client WHERE username = %s AND password = %s"
+    cursor.execute(check, (username, password))
+    results = cursor.fetchone()
+    if results is False:
+        print("User not found")
+    else:
+        id = results[0]
+        print(id)
 
 login()
 
